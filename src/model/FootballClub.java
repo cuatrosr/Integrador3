@@ -55,20 +55,36 @@ public class FootballClub{
   }
 
   public void addPlayerDressingA(Player player){
-    for (int i = 0; i < dressingRoomA.length; i++) {
-      for (int j = 0; j < dressingRoomA[i].length; j++) {
+    boolean added = false;
+    for (int i = 0; i < dressingRoomA.length && added == false; i++) {
+      for (int j = 0; j < dressingRoomA[i].length && added == false; j++) {
         if (j % 2 != 0 && dressingRoomA[i][j] == null) {
           dressingRoomA[i][j] = player;
+          added = true;
         }
       }
     }
   }
 
   public void addPlayerDressingB(Player player){
-    for (int i = 0; i < dressingRoomB.length; i++) {
-      for (int j = 0; j < dressingRoomB[i].length; j++) {
+    boolean added = false;
+    for (int i = 0; i < dressingRoomB.length && added == false; i++) {
+      for (int j = 0; j < dressingRoomB[i].length && added == false; j++) {
         if (j % 2 != 0 && dressingRoomB[i][j] == null) {
           dressingRoomB[i][j] = player;
+          added = true;
+        }
+      }
+    }
+  }
+
+  public void addCoachOffice(Coach coach){
+    boolean added = false;
+    for (int i = 0; i < sectorOffice.length && added == false; i++) {
+      for (int j = 0; j < sectorOffice[i].length && added == false; j++) {
+        if (j % 2 != 0 && sectorOffice[i][j] == null) {
+          sectorOffice[i][j] = coach;
+          added = true;
         }
       }
     }

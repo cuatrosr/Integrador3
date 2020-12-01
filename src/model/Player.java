@@ -47,11 +47,41 @@ public class Player extends Employee implements CalculateOp{
     this.positionPl = positionPl;
   }
 
-  public void starMarket(int a){
-    a += 1;
+  public double priceMarketP(Position positionPl, int salaryEm, double averagePl, int amountGoal){
+    double price;
+    if (positionPl == Position.GOALKEEPER) {
+      price = (salaryEm * 12) + (averagePl * 150);
+    } else if (positionPl == Position.DEFENCE) {
+      price = (salaryEm * 13) + (averagePl * 125) + (amountGoal * 100);
+    } else if (positionPl == Position.MIDFIELDER) {
+      price = (salaryEm * 14) + (averagePl * 135) + (amountGoal * 125);
+    } else {
+      price = (salaryEm * 15) + (averagePl * 0.9) + (amountGoal * 150);
+    }
+    return price;
   }
 
-  public void priceMarket(int a){
-    a += 1;
+  public double priceMarketC(int salaryEm, int yearExp, int amountWinner){
+    double null1 = 0;
+    return null1;
+  }
+
+  public double starMarketP(Position positionPl, double averagePl, int amountGoal){
+    double star;
+    if (positionPl == Position.GOALKEEPER) {
+      star = (averagePl * 0.9);
+    } else if (positionPl == Position.DEFENCE) {
+      star = (averagePl * 0.9) + (amountGoal/100);
+    } else if (positionPl == Position.MIDFIELDER) {
+      star = (averagePl * 0.9) + (amountGoal/90);
+    } else {
+      star = (averagePl * 0.9) + (amountGoal/80);
+    }
+    return star;
+  }
+
+  public double starMarketC(int amountWinner){
+    double null1 = 0;
+    return null1;
   }
 }
