@@ -18,6 +18,8 @@ public class FootballClub{
   private Coach[][] sectorOffice;
   private final static int OFFICE_F = 6;
   private final static int OFFICE_C = 6;
+  private Position[] allPosition = Position.values();
+  private Expertice[] allExpertice = Expertice.values();
 
   public FootballClub(String nameFC, int nitFC, String fundationDateFC){
     this.nameFC = nameFC;
@@ -88,5 +90,42 @@ public class FootballClub{
         }
       }
     }
+  }
+
+  public static void printAllPosition(Position[] allPosition){
+    for (int i = 0; i < allPosition.length; i++) {
+      System.out.println("(" + (i+1) + ") " + allPosition[i]);
+    }
+    System.out.println("");
+  }
+
+  public static void printAllExpertice(Expertice[] allExpertice){
+    for (int i = 0; i < allExpertice.length; i++) {
+      System.out.println("(" + (i+1) + ") " + allExpertice[i]);
+    }
+    System.out.println("");
+  }
+
+  public Position[] getAllPosition(){
+    return allPosition;
+  }
+
+  public Expertice[] getAllExpertice(){
+    return allExpertice;
+  }
+
+  public boolean addEmployee(String nameEm, int idEm, int salaryEm, boolean statuesEm, int dorsalPl, int amountGoal, double averagePl, Position positionPl){
+    Player player = new Player(nameEm, idEm, salaryEm, statuesEm, dorsalPl, amountGoal, averagePl, positionPl);
+    return employees.add(player);
+  }
+
+  public boolean addEmployee(String nameEm, int idEm, int salaryEm, boolean statuesEm, int yearExp, int amountTeam, int amountWinner){
+    MainCoach mainCoach = new MainCoach(nameEm, idEm, salaryEm, statuesEm, yearExp, amountTeam, amountWinner);
+    return employees.add(mainCoach);
+  }
+
+  public boolean addEmployee(String nameEm, int idEm, int salaryEm, boolean statuesEm, int yearExp, boolean profesionalPlayer, Expertice expertice){
+    AssistentCoach assisCoach = new AssistentCoach(nameEm, idEm, salaryEm, statuesEm, yearExp, profesionalPlayer, expertice);
+    return employees.add(assisCoach);
   }
 }
