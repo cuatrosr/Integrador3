@@ -26,4 +26,11 @@ public class AssistentCoach extends Coach{
   public void setExpertice(Expertice expertice){
     this.expertice = expertice;
   }
+
+  @Override
+  public String showInfo(){
+    String msg = super.showInfo() + "\nJugador profesional: " + getProfesionalPlayer();
+    msg += "\nExperticia: " + getExpertice();
+    return msg;
+  }
 }

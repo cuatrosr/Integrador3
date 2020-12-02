@@ -16,4 +16,10 @@ public abstract class Coach extends Employee{
   public void setYearExp(int yearExp){
     this.yearExp = yearExp;
   }
+
+  @Override
+  public String showInfo(){
+    String msg = super.showInfo() + "\nAños Exp: " + getYearExp();
+    return msg;
+  }
 }

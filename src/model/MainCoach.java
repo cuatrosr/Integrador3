@@ -46,4 +46,11 @@ public class MainCoach extends Coach implements CalculateOp{
     double star = 5 + (amountWinner/10);
     return star;
   }
+
+  @Override
+  public String showInfo(){
+    String msg = super.showInfo() + "\nCantidad de equipos: " + getAmountTeam();
+    msg += "\nCampeonatos ganados: " + getAmountWinner();
+    return msg;
+  }
 }

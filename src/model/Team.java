@@ -27,4 +27,25 @@ public class Team{
   public void setNameTeam(String nameTeam){
     this.nameTeam = nameTeam;
   }
+
+  public Player[] getPlayers(){
+    return players;
+  }
+
+  public AssistentCoach[] getAssisCoach(){
+    return assisCoach;
+  }
+
+  public MainCoach[] getMainCoach(){
+    return mainCoach;
+  }
+
+  public ArrayList<LineUp> getLineUps(){
+    return lineUps;
+  }
+
+  public String showTeamInfo(){
+    String msg = "\nNombre: " + getNameTeam();
+    return msg;
+  }
 }

@@ -35,4 +35,11 @@ public class LineUp{
   public void setFormationLine(String formationLine){
     this.formationLine = formationLine;
   }
+
+  public String showLineUpInfo(){
+    String msg = "\nDate LineUp: " + getDateLineUp();
+    msg += "\nTactica: " + getTactic();
+    msg += "\nFormacion : " + getFormationLine();
+    return msg;
+  }
 }

@@ -14,7 +14,7 @@ public class Menu{
       showMenu();
       choice = readOption(sc);
       doOp(choice);
-    } while (choice != 3);
+    } while (choice != 5);
   }
 
   public void doOp(int choice){
@@ -22,7 +22,14 @@ public class Menu{
       case 1:
         addEmployee();
         break;
+      case 2:
+        eraseEmployee();
+        break;
       case 3:
+        app.showInfoEmployee();
+        break;
+      case 4:
+        editTeams();
         break;
       default:
         System.out.println("\nEsa opcion no era valida.");
@@ -45,7 +52,9 @@ public class Menu{
   public void showMenu(){
     System.out.println("\n(1) Añadir un empleado");
     System.out.println("(2) Despedir un empleado");
-    System.out.println("(3) Salir del programa\n");
+    System.out.println("(3) Imprimir empleados");
+    System.out.println("(4) Editar equipos");
+    System.out.println("(5) Salir del programa\n");
   }
 
   public void addEmployee(){
@@ -110,9 +119,26 @@ public class Menu{
     }
   }
 
+  public void eraseEmployee(){
+    app.showInfoEmployee();
+    System.out.println("\nIngrese el nombre del empleado a despedir: ");
+    String nameEm = sc.nextLine();
+    if (app.eraseEmployee(nameEm)) {
+      System.out.println("\nDespedido correctamente");
+    } else {
+      System.out.println("\nNo se encontro el empleado");
+    }
+  }
+
   public int readOption(Scanner sc){
     int choice = sc.nextInt();
     sc.nextLine();
     return choice;
+  }
+
+  public void editTeams(){
+    app.printTeam();
+    System.out.println("\nIngrese el nombre del equipo a editar: ");
+    String teamToEdit = sc.nextLine();
   }
 }

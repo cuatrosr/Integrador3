@@ -26,6 +26,10 @@ public class FootballClub{
     this.nitFC = nitFC;
     this.fundationDateFC = fundationDateFC;
     teams = new Team[MAX_TEAMS];
+    String nameTeam = "Team A";
+    teams[0] = new Team(nameTeam);
+    nameTeam = "Team B";
+    teams[1] = new Team(nameTeam);
     dressingRoomA = new Player[DRESSING_A_F][DRESSING_A_C];
     dressingRoomB = new Player[DRESSING_B_F][DRESSING_B_C];
     employees = new ArrayList<Employee>();
@@ -114,6 +118,10 @@ public class FootballClub{
     return allExpertice;
   }
 
+  public Team[] getTeams(){
+    return teams;
+  }
+
   public boolean addEmployee(String nameEm, int idEm, int salaryEm, boolean statuesEm, int dorsalPl, int amountGoal, double averagePl, Position positionPl){
     Player player = new Player(nameEm, idEm, salaryEm, statuesEm, dorsalPl, amountGoal, averagePl, positionPl);
     return employees.add(player);
@@ -127,5 +135,65 @@ public class FootballClub{
   public boolean addEmployee(String nameEm, int idEm, int salaryEm, boolean statuesEm, int yearExp, boolean profesionalPlayer, Expertice expertice){
     AssistentCoach assisCoach = new AssistentCoach(nameEm, idEm, salaryEm, statuesEm, yearExp, profesionalPlayer, expertice);
     return employees.add(assisCoach);
+  }
+
+  public void showInfoEmployee(){
+    if (employees.size() == 0) {
+      System.out.println("\nNo hay empleados aun.");
+    } else {
+      for (int i = 0; i < employees.size(); i++) {
+        System.out.println(employees.get(i).showInfo());
+      }
+    }
+  }
+
+  public boolean eraseEmployee(String nameEm){
+    boolean erase = false;
+    for (int i = 0; i < employees.size(); i++) {
+      if (employees.get(i).getNameEm().equalsIgnoreCase(nameEm)) {
+        Employee employee = employees.get(i);
+        return employees.remove(employee);
+      }
+    }
+    return erase;
+  }
+
+  public void printTeam(){
+    for (int i = 0; i < teams.length; i++) {
+      System.out.println(teams[i].showTeamInfo());
+      Player[] players = teams[i].getPlayers();
+      try {
+        for (int j = 0; j < players.length; j++) {
+          System.out.println(players[j].showInfo());
+        }
+      } catch (NullPointerException e) {
+        System.out.println("\nNo hay jugadores.");
+      }
+      AssistentCoach[] assisCoach = teams[i].getAssisCoach();
+      try {
+        for (int j = 0; j < assisCoach.length; j++) {
+          System.out.println(assisCoach[j].showInfo());
+        }
+      } catch (NullPointerException e) {
+        System.out.println("\nNo hay coach asistentes.");
+      }
+      MainCoach[] mainCoach = teams[i].getMainCoach();
+      try {
+        for (int j = 0; j < mainCoach.length; j++) {
+          System.out.println(mainCoach[j].showInfo());
+        }
+      } catch (NullPointerException e) {
+        System.out.println("\nNo hay coach principales.");
+      }
+      ArrayList<LineUp> lineUps = teams[i].getLineUps();
+      if (lineUps.size() == 0) {
+        System.out.println("\nNo hay Line ups.");
+      } else {
+        for (int j = 0; j < lineUps.size(); j++) {
+          System.out.println(lineUps.get(j).showLineUpInfo());
+        }
+      }
+      System.out.println("");
+    }
   }
 }

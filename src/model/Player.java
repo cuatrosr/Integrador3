@@ -84,4 +84,13 @@ public class Player extends Employee implements CalculateOp{
     double null1 = 0;
     return null1;
   }
+
+  @Override
+  public String showInfo(){
+    String msg = super.showInfo() + "\nDorsal: " + getDorsalPl();
+    msg += "\nCantidad de goles: " + getAmountGoal();
+    msg += "\nPromedio de jugador: " + getAveragePl();
+    msg += "\nPosicion: " + getPositionPl();
+    return msg;
+  }
 }

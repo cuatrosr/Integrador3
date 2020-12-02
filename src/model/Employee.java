@@ -45,4 +45,12 @@ public abstract class Employee{
   public void setStatuesEm(boolean statuesEm){
     this.statuesEm = statuesEm;
   }
+
+  public String showInfo(){
+    String msg = "\nNombre: " + getNameEm();
+    msg += "\nId: " + getIdEm();
+    msg += "\nSalario: " + getSalaryEm();
+    msg += "\nStatues: " + getStatuesEm();
+    return msg;
+  }
 }
