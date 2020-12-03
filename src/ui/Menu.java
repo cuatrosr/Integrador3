@@ -31,6 +31,8 @@ public class Menu{
       case 4:
         editTeams();
         break;
+      case 5:
+        break;
       default:
         System.out.println("\nEsa opcion no era valida.");
         break;
@@ -140,5 +142,160 @@ public class Menu{
     app.printTeam();
     System.out.println("\nIngrese el nombre del equipo a editar: ");
     String teamToEdit = sc.nextLine();
+    int index;
+    if (teamToEdit.equalsIgnoreCase("team a")) {
+      index = 0;
+    } else {
+      index = 1;
+    }
+    System.out.println("\nQue desea editar:");
+    System.out.println("\n(1) Jugadores. \n(2) Coach Asistente. \n(3) Coach Principal. \n(4) Enviar Coachs a oficina. \n(5) LineUp");
+    int editChoice = sc.nextInt();
+    ArrayList<Employee> employees = app.getEmployees();
+    switch (editChoice) {
+      case 1:
+        System.out.println("\nJugadores: \n(1) Añadir. (2) Remover. (3) Enviar a vestuario.");
+        int editChoice2 = sc.nextInt();
+        sc.nextLine();
+        int count = 0;
+        if (editChoice2 == 1) {
+          for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i) instanceof Player) {
+              System.out.println(employees.get(i).showInfo());
+              count++;
+            }
+          }
+          if (count == 0) {
+            System.out.println("\nNo hay jugadores contratados.");
+          } else {
+            System.out.println("\nIngrese el nombre del jugador a añadir:");
+            String namePl = sc.nextLine();
+            if (app.addPlayerTeam(namePl, index)) {
+              System.out.println("\nAñadido correctamente");
+            } else {
+              System.out.println("\nNo se añadio correctamente");
+            }
+          }
+        } else if (editChoice2 == 2) {
+          Team[] teams = app.getTeams();
+          Player[] players = teams[index].getPlayers();
+          if (players == null) {
+            System.out.println("\nNo hay jugadores en el team.");
+          } else {
+            for (int i = 0; i < players.length; i++) {
+              if (players[i] != null) {
+                System.out.println(players[i].showInfo());
+              }
+            }
+            System.out.println("\nIngrese el nombre del jugador a eliminar:");
+            String namePl = sc.nextLine();
+            if (app.removePlayerTeam(namePl, index)) {
+              System.out.println("\nSe removio correctamente");
+            } else {
+              System.out.println("\nNo se removio correctamente");
+            }
+          }
+        } else {
+          app.goToCamerino(index);
+          app.printCamerino(index);
+        }
+        break;
+      case 2:
+        System.out.println("\nCoach Assis: \n(1) Añadir. (2) Remover.");
+        int editChoice3 = sc.nextInt();
+        sc.nextLine();
+        int count2 = 0;
+        if (editChoice3 == 1) {
+          for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i) instanceof AssistentCoach) {
+              System.out.println(employees.get(i).showInfo());
+              count2++;
+            }
+          }
+          if (count2 == 0) {
+            System.out.println("\nNo hay Asistentes contratados.");
+          } else {
+            System.out.println("\nIngrese el nombre del asistente a añadir:");
+            String namePl = sc.nextLine();
+            if (app.addAssisTeam(namePl, index)) {
+              System.out.println("\nAñadido correctamente");
+            } else {
+              System.out.println("\nNo se añadio correctamente");
+            }
+          }
+        } else if (editChoice3 == 2) {
+          Team[] teams = app.getTeams();
+          AssistentCoach[] assisCoach = teams[index].getAssisCoach();
+          if (assisCoach == null) {
+            System.out.println("\nNo hay Asistentes en el team.");
+          } else {
+            for (int i = 0; i < assisCoach.length; i++) {
+              if (assisCoach[i] != null) {
+                System.out.println(assisCoach[i].showInfo());
+              }
+            }
+            System.out.println("\nIngrese el nombre del asistente a eliminar:");
+            String namePl = sc.nextLine();
+            if (app.removeAssisTeam(namePl, index)) {
+              System.out.println("\nSe removio correctamente");
+            } else {
+              System.out.println("\nNo se removio correctamente");
+            }
+          }
+        }
+        break;
+      case 3:
+        System.out.println("\nCoach Main: \n(1) Añadir. (2) Remover.");
+        int editChoice4 = sc.nextInt();
+        sc.nextLine();
+        int count3 = 0;
+        if (editChoice4 == 1) {
+          for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i) instanceof MainCoach) {
+              System.out.println(employees.get(i).showInfo());
+              count3++;
+            }
+          }
+          if (count3 == 0) {
+            System.out.println("\nNo hay Principales contratados.");
+          } else {
+            System.out.println("\nIngrese el nombre del Principal a añadir:");
+            String namePl = sc.nextLine();
+            if (app.addMainTeam(namePl, index)) {
+              System.out.println("\nAñadido correctamente");
+            } else {
+              System.out.println("\nNo se añadio correctamente");
+            }
+          }
+        } else if (editChoice4 == 2) {
+          Team[] teams = app.getTeams();
+          MainCoach[] mainCoach = teams[index].getMainCoach();
+          if (mainCoach == null) {
+            System.out.println("\nNo hay Principales en el team.");
+          } else {
+            for (int i = 0; i < mainCoach.length; i++) {
+              if (mainCoach[i] != null) {
+                System.out.println(mainCoach[i].showInfo());
+              }
+            }
+            System.out.println("\nIngrese el nombre del principal a eliminar:");
+            String namePl = sc.nextLine();
+            if (app.removeMainTeam(namePl, index)) {
+              System.out.println("\nSe removio correctamente");
+            } else {
+              System.out.println("\nNo se removio correctamente");
+            }
+          }
+        }
+        break;
+      case 4:
+        app.goToOffice();
+        app.printOffice();
+        break;
+      case 5:
+        break;
+      default:
+        System.out.println("\nOpcion invalida.");
+    }
   }
 }

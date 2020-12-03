@@ -32,12 +32,24 @@ public class Team{
     return players;
   }
 
+  public void setPlayers(Player[] players){
+    this.players = players;
+  }
+
   public AssistentCoach[] getAssisCoach(){
     return assisCoach;
   }
 
+  public void setAssistentCoach(AssistentCoach[] assisCoach){
+    this.assisCoach = assisCoach;
+  }
+
   public MainCoach[] getMainCoach(){
     return mainCoach;
+  }
+
+  public void setMainCoach(MainCoach[] mainCoach){
+    this.mainCoach = mainCoach;
   }
 
   public ArrayList<LineUp> getLineUps(){
