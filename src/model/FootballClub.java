@@ -20,16 +20,15 @@ public class FootballClub{
   private final static int OFFICE_C = 6;
   private Position[] allPosition = Position.values();
   private Expertice[] allExpertice = Expertice.values();
+  private Tactic[] allTactic = Tactic.values();
 
   public FootballClub(String nameFC, int nitFC, String fundationDateFC){
     this.nameFC = nameFC;
     this.nitFC = nitFC;
     this.fundationDateFC = fundationDateFC;
     teams = new Team[MAX_TEAMS];
-    String nameTeam = "Team A";
-    teams[0] = new Team(nameTeam);
-    nameTeam = "Team B";
-    teams[1] = new Team(nameTeam);
+    teams[0] = new Team("Team A");
+    teams[1] = new Team("Team B");
     dressingRoomA = new String[DRESSING_A_F][DRESSING_A_C];
     dressingRoomB = new String[DRESSING_B_F][DRESSING_B_C];
     employees = new ArrayList<Employee>();
@@ -59,19 +58,7 @@ public class FootballClub{
   public void setFundationDateFC(String fundationDateFC){
     this.fundationDateFC = fundationDateFC;
   }
-/*
-  public void addCoachOffice(Coach coach){
-    boolean added = false;
-    for (int i = 0; i < sectorOffice.length && added == false; i++) {
-      for (int j = 0; j < sectorOffice[i].length && added == false; j++) {
-        if (j % 2 != 0 && sectorOffice[i][j] == null) {
-          sectorOffice[i][j] = coach;
-          added = true;
-        }
-      }
-    }
-  }
-*/
+
   public static void printAllPosition(Position[] allPosition){
     for (int i = 0; i < allPosition.length; i++) {
       System.out.println("(" + (i+1) + ") " + allPosition[i]);
@@ -390,5 +377,96 @@ public class FootballClub{
     for (String matriz[] : sectorOffice) {
       System.out.println(Arrays.toString(matriz));
     }
+  }
+
+  public void printTactic(){
+    System.out.println("");
+    for (int i = 0; i < allTactic.length; i++) {
+      System.out.println("(" + (i+1) + ")" + allTactic[i]);
+    }
+    System.out.println("");
+  }
+
+  public boolean createLineUp(int index, String dateLineUp, Tactic tactic, String formationLine){
+    ArrayList<LineUp> lineUps = teams[index].getLineUps();
+    return lineUps.add(new LineUp(dateLineUp, tactic, formationLine));
+  }
+
+  public String printTeamLineUp(int index){
+    ArrayList<LineUp> lineUps = teams[index].getLineUps();
+    String msg = "";
+    String formationLine;
+    String[] formationSlip;
+    int[] formationPart;
+    int formationIndex;
+    for (int i = 0; i < lineUps.size(); i++) {
+      boolean[][] matriz = {
+        {false,false,false,false,false,false,false},
+        {false,false,false,false,false,false,false},
+        {false,false,false,false,false,false,false},
+        {false,false,false,false,false,false,false},
+        {false,false,false,false,false,false,false},
+        {false,false,false,false,false,false,false},
+        {false,false,false,false,false,false,false}};
+
+      msg += "\nDate: " + lineUps.get(i).getDateLineUp();
+      msg += "\nTactic: " + lineUps.get(i).getTactic();
+      msg += "\nFormation Line: " + lineUps.get(i).getFormationLine();
+      msg += "\n\n";
+      formationLine = lineUps.get(i).getFormationLine();
+      formationSlip = formationLine.split("-");
+      formationPart = new int[formationSlip.length];
+      for (int j = 0; j < formationSlip.length; j++) {
+        formationPart[j] = Integer.parseInt(formationSlip[j]);
+      }
+      matriz[6][3] = (formationPart[0] % 2 == 0) ? false : true;
+      formationIndex = formationPart[0] / 2;
+      for (int j = 0; j < formationIndex; j++) {
+        matriz[6][3 + (j + 1)] = true;
+        matriz[6][3 - (j + 1)] = true;
+      }
+      matriz[4][3] = (formationPart[1] % 2 == 0) ? false : true;
+      formationIndex = formationPart[1] / 2;
+      for (int j = 0; j < formationIndex; j++) {
+        matriz[4][3 + (j + 1)] = true;
+        matriz[4][3 - (j + 1)] = true;
+      }
+      matriz[2][3] = (formationPart[2] % 2 == 0) ? false : true;
+      formationIndex = formationPart[2] / 2;
+      for (int j = 0; j < formationIndex; j++) {
+        matriz[2][3 + (j + 1)] = true;
+        matriz[2][3 - (j + 1)] = true;
+      }
+      try {
+        matriz[0][3] = (formationPart[3] % 2 == 0) ? false : true;
+        formationIndex = formationPart[3] / 2;
+        for (int j = 0; j < formationIndex; j++) {
+          matriz[0][3 + (j + 1)] = true;
+          matriz[0][3 - (j + 1)] = true;
+        }
+      } catch(ArrayIndexOutOfBoundsException e) {
+      }
+      int[][] matrizInt = {
+        {0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0},};
+      for (int j = 0; j < matriz.length; j++) {
+        for (int k = 0; k < matriz[j].length; k++) {
+          if (matriz[j][k] == false) {
+            matrizInt[j][k] = 0;
+          } else if (matriz[j][k] == true) {
+            matrizInt[j][k] = 1;
+          }
+        }
+      }
+      for (int[] b : matrizInt) {
+        msg += Arrays.toString(b) + "\n";
+      }
+    }
+    return msg;
   }
 }

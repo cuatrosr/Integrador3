@@ -56,6 +56,10 @@ public class Team{
     return lineUps;
   }
 
+  public void setLineUps(ArrayList<LineUp> lineUps){
+    this.lineUps = lineUps;
+  }
+
   public String showTeamInfo(){
     String msg = "\nNombre: " + getNameTeam();
     return msg;

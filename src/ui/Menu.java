@@ -149,7 +149,7 @@ public class Menu{
       index = 1;
     }
     System.out.println("\nQue desea editar:");
-    System.out.println("\n(1) Jugadores. \n(2) Coach Asistente. \n(3) Coach Principal. \n(4) Enviar Coachs a oficina. \n(5) LineUp");
+    System.out.println("\n(1) Jugadores. \n(2) Coach Asistente. \n(3) Coach Principal. \n(4) Enviar Coachs a oficina. \n(5) Crear LineUp \n(6) Imprimir LineUp");
     int editChoice = sc.nextInt();
     ArrayList<Employee> employees = app.getEmployees();
     switch (editChoice) {
@@ -293,6 +293,25 @@ public class Menu{
         app.printOffice();
         break;
       case 5:
+        sc.nextLine();
+        System.out.println("\nIngrese la fecha del encuentro:");
+        String dateLineUp = sc.nextLine();
+        app.printTactic();
+        System.out.println("\nIngrese el index de la tactica:");
+        int indexTactic = sc.nextInt() - 1;
+        sc.nextLine();
+        Tactic[] allTactic = Tactic.values();
+        Tactic tactic = allTactic[indexTactic];
+        System.out.println("\nIngrese su formacion en el siguiente formato (x-x-x):");
+        String formationLine = sc.nextLine();
+        if (app.createLineUp(index, dateLineUp, tactic, formationLine)) {
+          System.out.println("\nAñadido correctamente.");
+        } else {
+          System.out.println("\nNo se añadio correctamente.");
+        }
+        break;
+      case 6:
+        System.out.println(app.printTeamLineUp(index));
         break;
       default:
         System.out.println("\nOpcion invalida.");
