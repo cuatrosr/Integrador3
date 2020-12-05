@@ -22,6 +22,14 @@ public class FootballClub{
   private Expertice[] allExpertice = Expertice.values();
   private Tactic[] allTactic = Tactic.values();
 
+  /**
+  * Create a footbalclub.
+  * <b> pre: </b> <br>
+  * <b> post: </b> Create a FootballClub.
+  * @param nameFC nameFC != null.
+  * @param nitFC nitFC != null.
+  * @param fundationDateFC fundationDateFC != null
+  */
   public FootballClub(String nameFC, int nitFC, String fundationDateFC){
     this.nameFC = nameFC;
     this.nitFC = nitFC;
@@ -35,30 +43,72 @@ public class FootballClub{
     sectorOffice = new String[OFFICE_F][OFFICE_C];
   }
 
+  /**
+  * Return the name of footbalclub.
+  * <b> pre: </b> footbalclub != null <br>
+  * <b> post: </b> return the name of footbalclub.
+  * @return nameFC
+  */
   public String getNameFC(){
     return nameFC;
   }
 
+  /**
+  * Set the name of footbalclub.
+  * <b> pre: </b> footbalclub != null <br>
+  * <b> post: </b> set the name of footbalclub.
+  * @param nameFC nameFC != null
+  */
   public void setNameFC(String nameFC){
     this.nameFC = nameFC;
   }
 
+  /**
+  * Return the nit of footbalclub.
+  * <b> pre: </b> footbalclub != null <br>
+  * <b> post: </b> return the nit of footbalclub.
+  * @return nitFC
+  */
   public int getNitFC(){
     return nitFC;
   }
 
+  /**
+  * Set the nit of footbalclub.
+  * <b> pre: </b> footbalclub != null <br>
+  * <b> post: </b> set the nit of footbalclub.
+  * @param nitFC nitFC != null
+  */
   public void setNitFC(int nitFC){
     this.nitFC = nitFC;
   }
 
+  /**
+  * Return the fundation of footbalclub.
+  * <b> pre: </b> footbalclub != null <br>
+  * <b> post: </b> return the fundation of footbalclub.
+  * @return fundationDateFC
+  */
   public String getFundationDateFC(){
     return fundationDateFC;
   }
 
+  /**
+  * Set the fundation of footbalclub.
+  * <b> pre: </b> footbalclub != null <br>
+  * <b> post: </b> set the fundation of footbalclub.
+  * @param fundationDateFC fundationDateFC != null
+  */
   public void setFundationDateFC(String fundationDateFC){
     this.fundationDateFC = fundationDateFC;
   }
 
+  /**
+  * Print all the positions.
+  * <b> pre: </b> <br>
+  * <b> post: </b> print all the positions.
+  * @param allPosition footbalclub != null
+  */
   public static void printAllPosition(Position[] allPosition){
     for (int i = 0; i < allPosition.length; i++) {
       System.out.println("(" + (i+1) + ") " + allPosition[i]);
@@ -66,6 +116,12 @@ public class FootballClub{
     System.out.println("");
   }
 
+  /**
+  * Print all expertice.
+  * <b> pre: </b> <br>
+  * <b> post: </b> print all expertice.
+  * @param allExpertice footbalclub != null
+  */
   public static void printAllExpertice(Expertice[] allExpertice){
     for (int i = 0; i < allExpertice.length; i++) {
       System.out.println("(" + (i+1) + ") " + allExpertice[i]);
@@ -73,37 +129,103 @@ public class FootballClub{
     System.out.println("");
   }
 
+  /**
+  * Return the position.
+  * <b> pre: </b> footbalclub != null <br>
+  * <b> post: </b> return the position.
+  * @return allPosition
+  */
   public Position[] getAllPosition(){
     return allPosition;
   }
 
+  /**
+  * Return the expertice.
+  * <b> pre: </b> footbalclub != null <br>
+  * <b> post: </b> return the expertice.
+  * @return allExpertice
+  */
   public Expertice[] getAllExpertice(){
     return allExpertice;
   }
 
+  /**
+  * Return the teams.
+  * <b> pre: </b> footbalclub != null <br>
+  * <b> post: </b> return the teams.
+  * @return teams
+  */
   public Team[] getTeams(){
     return teams;
   }
 
+  /**
+  * Return the array list of all the employees.
+  * <b> pre: </b> footbalclub != null <br>
+  * <b> post: </b> return the array list of all the employees.
+  * @return employees
+  */
   public ArrayList<Employee> getEmployees(){
     return employees;
   }
 
+  /**
+  * Create a player.
+  * <b> pre: </b> addEmployee was initiated <br>
+  * <b> post: </b> Create a player.
+  * @param nameEm nameEm != null.
+  * @param idEm idEm != null.
+  * @param salaryEm salaryEm != null
+  * @param statuesEm statuesEm must be a boolean
+  * @param dorsalPl dorsalPl != null
+  * @param amountGoal amountGoal != null
+  * @param averagePl averagePl != null
+  * @param positionPl positionPl != null
+  */
   public boolean addEmployee(String nameEm, int idEm, int salaryEm, boolean statuesEm, int dorsalPl, int amountGoal, double averagePl, Position positionPl){
     Player player = new Player(nameEm, idEm, salaryEm, statuesEm, dorsalPl, amountGoal, averagePl, positionPl);
     return employees.add(player);
   }
 
+  /**
+  * Create a main coach.
+  * <b> pre: </b> addEmployee was initiated <br>
+  * <b> post: </b> Create an Employee.
+  * @param nameEm nameEm != null.
+  * @param idEm idEm != null.
+  * @param salaryEm salaryEm != null
+  * @param statuesEm statuesEm must be a boolean
+  * @param yearExp yearExp >= 0.
+  * @param amountTeam amountTeam != null
+  * @param amountWinner amountWinner != null
+  */
   public boolean addEmployee(String nameEm, int idEm, int salaryEm, boolean statuesEm, int yearExp, int amountTeam, int amountWinner){
     MainCoach mainCoach = new MainCoach(nameEm, idEm, salaryEm, statuesEm, yearExp, amountTeam, amountWinner);
     return employees.add(mainCoach);
   }
 
+  /**
+  * Create an Assistent Coach.
+  * <b> pre: </b> addEmployee was initiated <br>
+  * <b> post: </b> Create an AssistentCoach.
+  * @param nameEm nameEm != null.
+  * @param idEm idEm != null.
+  * @param salaryEm salaryEm != null
+  * @param statuesEm statuesEm must be a boolean
+  * @param yearExp yearExp >= 0.
+  * @param profesionalPlayer profesionalPlayer must be a boolean
+  * @param expertice expertice != null.
+  */
   public boolean addEmployee(String nameEm, int idEm, int salaryEm, boolean statuesEm, int yearExp, boolean profesionalPlayer, Expertice expertice){
     AssistentCoach assisCoach = new AssistentCoach(nameEm, idEm, salaryEm, statuesEm, yearExp, profesionalPlayer, expertice);
     return employees.add(assisCoach);
   }
 
+  /**
+  * Print all employee.
+  * <b> pre: </b> <br>
+  * <b> post: </b> print all employee.
+  */
   public void showInfoEmployee(){
     if (employees.size() == 0) {
       System.out.println("\nNo hay empleados aun.");
@@ -113,6 +235,7 @@ public class FootballClub{
       }
     }
   }
+
 
   public boolean eraseEmployee(String nameEm){
     boolean erase = false;
@@ -125,6 +248,11 @@ public class FootballClub{
     return erase;
   }
 
+  /**
+  * Print all team.
+  * <b> pre: </b> <br>
+  * <b> post: </b> print all team.
+  */
   public void printTeam(){
     for (int i = 0; i < teams.length; i++) {
       System.out.println(teams[i].showTeamInfo());
@@ -174,6 +302,13 @@ public class FootballClub{
     }
   }
 
+  /**
+  * add players to team.
+  * <b> pre: </b> <br>
+  * <b> post: </b> add players to team.
+  * @param namePl namePl != null
+  * @param index index != null
+  */
   public boolean addPlayerTeam(String namePl, int index){
     boolean found = false;
     Player[] players = teams[index].getPlayers();
@@ -191,6 +326,13 @@ public class FootballClub{
     return found;
   }
 
+  /**
+  * remove players from team.
+  * <b> pre: </b> <br>
+  * <b> post: </b> remove players from team.
+  * @param namePl namePl != null
+  * @param index index != null
+  */
   public boolean removePlayerTeam(String namePl, int index){
     boolean found = false;
     Player[] players = teams[index].getPlayers();
@@ -204,6 +346,12 @@ public class FootballClub{
     return found;
   }
 
+  /**
+  * send the players to camerino.
+  * <b> pre: </b> <br>
+  * <b> post: </b> send the players to camerino.
+  * @param index index != null
+  */
   public String goToCamerino(int index){
     Player[] players = teams[index].getPlayers();
     int count = 0;
@@ -247,6 +395,11 @@ public class FootballClub{
     return msg;
   }
 
+  /**
+  * Print all camerino.
+  * <b> pre: </b> <br>
+  * <b> post: </b> print all camerino.
+  */
   public void printCamerino(int index){
 
     if (index == 0) {
@@ -260,6 +413,13 @@ public class FootballClub{
     }
   }
 
+  /**
+  * add assistent coach team.
+  * <b> pre: </b> <br>
+  * <b> post: </b> add assistent coach team.
+  * @param namePl namePl != null
+  * @param index index != null
+  */
   public boolean addAssisTeam(String namePl, int index){
     boolean found = false;
     AssistentCoach[] assisCoach = teams[index].getAssisCoach();
@@ -277,6 +437,13 @@ public class FootballClub{
     return found;
   }
 
+  /**
+  * remove assistent coach team.
+  * <b> pre: </b> <br>
+  * <b> post: </b> remove assistent coach team.
+  * @param namePl namePl != null
+  * @param index index != null
+  */
   public boolean removeAssisTeam(String namePl, int index){
     boolean found = false;
     AssistentCoach[] assisCoach = teams[index].getAssisCoach();
@@ -290,6 +457,13 @@ public class FootballClub{
     return found;
   }
 
+  /**
+  * add main coach team.
+  * <b> pre: </b> <br>
+  * <b> post: </b> add main coach team.
+  * @param namePl namePl != null
+  * @param index index != null
+  */
   public boolean addMainTeam(String namePl, int index){
     boolean found = false;
     MainCoach[] mainCoach = teams[index].getMainCoach();
@@ -307,6 +481,13 @@ public class FootballClub{
     return found;
   }
 
+  /**
+  * remove main coach team.
+  * <b> pre: </b> <br>
+  * <b> post: </b> remove main coach to a team.
+  * @param namePl namePl != null
+  * @param index index != null
+  */
   public boolean removeMainTeam(String namePl, int index){
     boolean found = false;
     MainCoach[] mainCoach = teams[index].getMainCoach();
@@ -320,6 +501,11 @@ public class FootballClub{
     return found;
   }
 
+  /**
+  * Send the coachs to office.
+  * <b> pre: </b> <br>
+  * <b> post: </b> Send the coachs to office.
+  */
   public void goToOffice(){
 
     ArrayList<String> coachs = new ArrayList<String>();
@@ -372,6 +558,11 @@ public class FootballClub{
     }
   }
 
+  /**
+  * Print all camerino.
+  * <b> pre: </b> <br>
+  * <b> post: </b> print all camerino.
+  */
   public void printOffice(){
     System.out.println("");
     for (String matriz[] : sectorOffice) {
@@ -379,6 +570,11 @@ public class FootballClub{
     }
   }
 
+  /**
+  * Print all tactic.
+  * <b> pre: </b> <br>
+  * <b> post: </b> print all tactic.
+  */
   public void printTactic(){
     System.out.println("");
     for (int i = 0; i < allTactic.length; i++) {
@@ -387,11 +583,26 @@ public class FootballClub{
     System.out.println("");
   }
 
+  /**
+  * create line up.
+  * <b> pre: </b> <br>
+  * <b> post: </b> create line up.
+  * @param index index != null
+  * @param dateLineUp dateLineUp != null
+  * @param tactic tactic != null
+  * @param formationLine formationLine != null
+  */
   public boolean createLineUp(int index, String dateLineUp, Tactic tactic, String formationLine){
     ArrayList<LineUp> lineUps = teams[index].getLineUps();
     return lineUps.add(new LineUp(dateLineUp, tactic, formationLine));
   }
 
+  /**
+  * Print team line up.
+  * <b> pre: </b> <br>
+  * <b> post: </b> print team line up.
+  * @param index index != null
+  */
   public String printTeamLineUp(int index){
     ArrayList<LineUp> lineUps = teams[index].getLineUps();
     String msg = "";

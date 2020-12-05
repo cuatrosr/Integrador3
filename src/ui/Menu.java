@@ -7,6 +7,11 @@ public class Menu{
   private FootballClub app;
   private static Scanner sc = new Scanner(System.in);
 
+  /**
+  * Start the program.
+  * <b> pre: </b> <br>
+  * <b> post: </b> Start the program.
+  */
   public void startProgram(){
     askClub();
     int choice = 0;
@@ -17,6 +22,12 @@ public class Menu{
     } while (choice != 5);
   }
 
+  /**
+  * Do the choice op.
+  * <b> pre: </b> <br>
+  * <b> post: </b> Do the choice op.
+  * @param choice
+  */
   public void doOp(int choice){
     switch (choice) {
       case 1:
@@ -39,6 +50,11 @@ public class Menu{
     }
   }
 
+  /**
+  * Ask the information of the club.
+  * <b> pre: </b> <br>
+  * <b> post: </b> Create a club.
+  */
   public void askClub(){
     System.out.println("\nIngrese el nombre del club:");
     String nameFC = sc.nextLine();
@@ -51,6 +67,11 @@ public class Menu{
     System.out.println("\nSe registro el club con exito.");
   }
 
+  /**
+  * show the menu.
+  * <b> pre: </b> <br>
+  * <b> post: </b> print the menu.
+  */
   public void showMenu(){
     System.out.println("\n(1) Añadir un empleado");
     System.out.println("(2) Despedir un empleado");
@@ -59,6 +80,11 @@ public class Menu{
     System.out.println("(5) Salir del programa\n");
   }
 
+  /**
+  * Ask the information to add an employee.
+  * <b> pre: </b> <br>
+  * <b> post: </b> Ask the information to add an employee.
+  */
   public void addEmployee(){
     System.out.println("\nIngrese el nombre del empleado:");
     String nameEm = sc.nextLine();
@@ -121,6 +147,11 @@ public class Menu{
     }
   }
 
+  /**
+  * Remove an employee.
+  * <b> pre: </b> <br>
+  * <b> post: </b> Remove an employee.
+  */
   public void eraseEmployee(){
     app.showInfoEmployee();
     System.out.println("\nIngrese el nombre del empleado a despedir: ");
@@ -132,12 +163,22 @@ public class Menu{
     }
   }
 
+  /**
+  * Read what the user send by console.
+  * <b> pre: </b> <br>
+  * <b> post: </b> Read what the user send by console.
+  */
   public int readOption(Scanner sc){
     int choice = sc.nextInt();
     sc.nextLine();
     return choice;
   }
 
+  /**
+  * edit the teams.
+  * <b> pre: </b> <br>
+  * <b> post: </b> edit the teams.
+  */
   public void editTeams(){
     app.printTeam();
     System.out.println("\nIngrese el nombre del equipo a editar: ");
